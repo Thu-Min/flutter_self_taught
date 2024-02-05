@@ -3,14 +3,16 @@ import "package:flutter_counter/util/my_button.dart";
 
 class DialogBox extends StatelessWidget {
 
-  // final inputController;
+  final inputController;
+  VoidCallback onSaved;
+  VoidCallback onCancel;
 
-  void onPressed() {
-
-  }
-
-  const DialogBox({super.key});
-  // const DialogBox({super.key, required this.inputController});
+  DialogBox({
+    super.key,
+    required this.inputController,
+    required this.onSaved,
+    required this.onCancel,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -23,10 +25,10 @@ class DialogBox extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             TextField(
-              // controller: inputController,
+              controller: inputController, 
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
-                hintText: 'Add New Task',
+                hintText: 'Add New Task', 
                 hintStyle: TextStyle(
                   color: Colors.white10,
                 )
@@ -38,11 +40,11 @@ class DialogBox extends StatelessWidget {
               children: [
                 MyButton(
                   text: "Cancel",
-                  onPressed: onPressed
+                  onPressed: onCancel
                 ), 
                 MyButton(
                   text: "Save",
-                  onPressed: onPressed
+                  onPressed: onSaved
                 )
               ],
             )
