@@ -4,16 +4,19 @@ import 'package:flutter/material.dart';
 class PhoneTile extends StatelessWidget {
   Phone phone;
 
+  void Function()? onTap;
+
   PhoneTile({
     super.key,
     required this.phone,
+    required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(left: 20),
-      width: 280,
+      width: 240,
       decoration: BoxDecoration(
         color: Colors.grey[100],
         borderRadius: BorderRadius.circular(10)
@@ -24,10 +27,10 @@ class PhoneTile extends StatelessWidget {
           ClipRRect(
             borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(12),
-              topRight: Radius.circular(12)
+              topRight: Radius.circular(12),
             ),
             child: Image.asset(
-              phone.imgPath
+              phone.imgPath,
             ),
           ),
 
@@ -41,10 +44,10 @@ class PhoneTile extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 25.0),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween ,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       phone.name,
@@ -61,19 +64,22 @@ class PhoneTile extends StatelessWidget {
                     )
                   ]
                 ),
-                Container(
-                  padding: const EdgeInsets.all(10),
-                  decoration: const BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(12),
-                      bottomRight: Radius.circular(12)
+                GestureDetector(
+                  onTap: onTap,
+                  child: Container(
+                    padding: const EdgeInsets.all(20),
+                    decoration: const BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(12),
+                        bottomRight: Radius.circular(12)
+                      )
+                    ),
+                    child: const Icon(
+                      Icons.add,
+                      color: Colors.white,
                     )
                   ),
-                  child: const Icon(
-                    Icons.add,
-                    color: Colors.white,
-                  )
                 )
               ]
             ),
