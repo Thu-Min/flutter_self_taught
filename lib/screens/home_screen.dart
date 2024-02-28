@@ -1,7 +1,10 @@
 import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_self_taught/screens/hotel_screen.dart';
 import 'package:flutter_self_taught/screens/ticket_view.dart';
+import 'package:flutter_self_taught/utils/app_info.dart';
 import 'package:flutter_self_taught/utils/app_styles.dart';
+import 'package:gap/gap.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -77,39 +80,74 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 40),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Upcoming Flights',
-                        style: Style.headLineStyleTwo,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          print('Tapped');
-                        },
-                        child: Text(
-                          'View all',
-                          style: Style.textStyle.copyWith(
-                            color: Style.primaryColor
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                )           
+                ),          
               ]
             ),
           ),
-          const Padding(
-            padding: const EdgeInsets.only(top: 15),
-            child: TicketView(),
-          )
+          const Gap(15),
+          Padding(
+            padding: const EdgeInsets.only(left: 20, right: 20, top: 30),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Upcoming Flights',
+                  style: Style.headLineStyleTwo,
+                ),
+                InkWell(
+                  onTap: () {
+                    print('Tapped');
+                  },
+                  child: Text(
+                    'View all',
+                    style: Style.textStyle.copyWith(
+                      color: Style.primaryColor
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const Gap(15),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            padding: EdgeInsets.only(left: 20),
+            child: Row(
+              children: ticketList.map((singleTicket) => TicketView(ticketList: singleTicket)).toList(),
+            ),
+          ),
+          const Gap(15),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Hotel",
+                  style: Style.headLineStyleTwo,
+                ),
+                InkWell(
+                  onTap: () {
+                    print("Tapped");
+                  },
+                  child: Text(
+                    "View All",
+                    style: Style.headLineStyleFour.copyWith(color: Style.primaryColor),
+                  ),
+                )
+              ],
+            ),
+          ),
+          const Gap(15),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            padding: EdgeInsets.only(left: 20),
+            child: Row(
+              children: hotelList.map((singleHotel) => HotelScreen(hotel: singleHotel)).toList()
+            ),
+          ),
+          const Gap(15),
         ],
-
       ),
     );
   }
