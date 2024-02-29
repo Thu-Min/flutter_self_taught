@@ -24,7 +24,6 @@ class Style{
   );
   static TextStyle headLineStyleThree = TextStyle(
     fontSize: 17,
-    color: Colors.grey.shade500,
     fontWeight: FontWeight.w500
   );
   static TextStyle headLineStyleFour = TextStyle(

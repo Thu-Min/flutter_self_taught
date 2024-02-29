@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_self_taught/utils/app_layout.dart';
 import 'package:flutter_self_taught/utils/app_styles.dart';
+import 'package:flutter_self_taught/widgets/double_text_widget.dart';
 import 'package:flutter_self_taught/widgets/icon_text_widget.dart';
+import 'package:flutter_self_taught/widgets/ticket_tabs_widget.dart';
 import 'package:gap/gap.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -27,47 +29,158 @@ class _SearchScreenState extends State<SearchScreen> {
             style: Style.headLineStyleOne.copyWith(fontSize: 35),
           ),
           const Gap(20),
-          Container(
-            padding: const EdgeInsets.all(3.5),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(50),
-              color: Color(0xfff4f6fd),
-            ),
-            child: Row(
-              children: [
-                Container(
-                  padding: const EdgeInsets.symmetric(vertical: 7),
-                  width: size.width*0.44,
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.horizontal(left: Radius.circular(50)),
-                    color: Colors.white
-                  ),
-                  child: const Center(
-                    child: Text(
-                      'Airline Tickets'
-                    ),
-                  ),
-                ),
-                Container(
-                  padding: const EdgeInsets.symmetric(vertical: 7),
-                  width: size.width*0.44,
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.horizontal(right: Radius.circular(50)),
-                    color: Colors.grey.shade200
-                  ),
-                  child: const Center(
-                    child: Text(
-                      'Hotels'
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
+          const TicketTabs(textOne: 'Airline Tickets', textTwo: 'Hotels',),
           const Gap(25),
           const IconTextWidget(icon: Icons.flight_takeoff_rounded, text: 'Departure'),
           const Gap(15),
           const IconTextWidget(icon: Icons.flight_land_rounded, text: 'Arrival'),
+          const Gap(15),
+          Container(
+            padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 15),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5),
+              color: const Color(0xd91130ce)
+            ),
+            child: Center(
+              child: Text(
+                "Find Tickets",
+                style: Style.textStyle.copyWith(color: Colors.white),
+              ),
+            )
+          ),
+          const Gap(40),
+          const DoubleTextWidget(text: "Upcoming Flights"),
+          const Gap(15),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                height: 425,
+                width: size.width*0.42,
+                padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(12),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.shade200,
+                      blurRadius: 1,
+                      spreadRadius: 1,
+                    )
+                  ]
+                ),
+                child: Column(
+                  children: [
+                    Container(
+                      height: 190,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: AssetImage('assets/images/hotel.png')
+                        )
+                      ),
+                    ),
+                    const Gap(12),
+                    Text(
+                      "20% discount on the early booking of this flight, Don't miss!",
+                      style: Style.headLineStyleTwo,
+                    )
+                  ],
+                ),
+              ),
+              Column(
+                children: [
+                  Stack(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.all(15),
+                        width: size.width*0.44,
+                        height: 200,
+                        decoration: BoxDecoration(
+                          color: Color(0xff3ab8b8),
+                          borderRadius: BorderRadius.circular(18)
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Disount\nfor survey',
+                              style: Style.headLineStyleTwo.copyWith(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold
+                              ),
+                            ),
+                            const Gap(10),
+                            Text(
+                              'Take the survey about our services and get discount',
+                              style: Style.headLineStyleTwo.copyWith(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 16
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Positioned(
+                        right: -45,
+                        top: -40,
+                        child: Container(
+                          padding: const EdgeInsets.all(30),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(width: 18, color: Color(0xff189999)),
+                            color: Colors.transparent,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                  const Gap(10),
+                  Container(
+                    padding: const EdgeInsets.all(15),
+                    width: size.width*0.44,
+                    height: 210,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(18),
+                      color: Color(0xffec6545)
+                    ),
+                    child: Column(
+                      children: [
+                        Text(
+                          'Take Love', 
+                          style: Style.headLineStyleTwo.copyWith(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold
+                          ),
+                        ),
+                        const Gap(5),
+                        RichText(
+                          text: const TextSpan(
+                            children: [
+                              TextSpan(
+                                text: '😍',
+                                style: TextStyle(fontSize: 38)
+                              ),
+                              TextSpan(
+                                text: '😍',
+                                style: TextStyle(fontSize: 50)
+                              ),
+                              TextSpan(
+                                text: '😍',
+                                style: TextStyle(fontSize: 38)
+                              ),
+                            ]
+                          )
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              )
+            ],
+          )
         ],
       ),
     );
